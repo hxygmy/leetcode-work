@@ -1,6 +1,6 @@
-# JavaLeetcodeWork
+# LeetcodeWork
 ### 介绍
-Java语言刷Leetcode
+从零开始Leetcode
 
 ### 基本思路
 1. 刷前准备
