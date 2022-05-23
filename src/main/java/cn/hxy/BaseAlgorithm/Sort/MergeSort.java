@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 经典排序算法之一
  *
  * 时间复杂度O(nlog(n))
- * 空间复杂度O(n)
+ * 空间复杂度O(nlog(n))
  * 稳定算法
  *
  * @author 何晓宇
