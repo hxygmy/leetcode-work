@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// 1. one-pass Hash Table
 class Solution
 {
 public:
