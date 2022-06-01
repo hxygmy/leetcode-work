@@ -10,6 +10,28 @@ using std::vector;
 // 多见点题貌似功利上更占优势，还不累
 // 并不需要存 value-index 对象  --》 与不原地操作，使用结果数组降低心智负担 配合（，。下面都暴力了还硬原地操作，又累又没结果，不要再这样了，虽然最后闯过去了）
 // 通过原数组取值，单调栈存value即可，结果存新的结果数组里面
+
+// 2.1 改下形参和变量命名，好读一点，算法题不用那么详细
+class Solution
+{
+public:
+    vector<int> dailyTemperatures(vector<int> &t)
+    {
+        stack<int> ms; // monotical stack stores the index
+        vector<int> res(t.size(), 0);
+        for (int i = 0; i < t.size(); ++i)
+        {
+            while (!ms.empty() && t[ms.top()] < t[i])
+            {
+                res[ms.top()] = i - ms.top();
+                ms.pop();
+            }
+            ms.push(i);
+        }
+        return res;
+    }
+};
+// 2.0 原始版本
 class Solution
 {
 public:
