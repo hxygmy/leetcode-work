@@ -12,9 +12,65 @@
 
 #include <string>
 #include <stack>
+#include <utility>
+#include <algorithm>
 
+using std::pair;
+using std::reverse;
 using std::stack;
 using std::string;
+
+// 3. 利用栈模拟（两连消何必计数？）
+// 之前只改了一半，是不用技术了，还留着计数。。。。。
+// 还好复习了一下，不然都没发现改一半这个盲点，做的时候是真糊涂啊
+class Solution
+{
+public:
+    string removeDuplicates(string s)
+    {
+        stack<char> memo;
+        for (auto ele : s)
+        {
+            if (!memo.empty() && ele == memo.top())
+                memo.pop();
+            else
+                memo.push(ele);
+        }
+        string res;
+        while (!memo.empty())
+        {
+            res.push_back(memo.top());
+            memo.pop();
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
+
+// 2. 利用栈模拟（何不用 pair？）
+class Solution
+{
+public:
+    string removeDuplicates(string s)
+    {
+        stack<pair<char, int>> memo;
+        for (auto ele : s)
+        {
+            if (!memo.empty() && ele == memo.top().first)
+                memo.pop();
+            else
+                memo.push({ele, 1});
+        }
+        string res;
+        while (!memo.empty())
+        {
+            res.push_back(memo.top().first);
+            memo.pop();
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
 
 // 1. 用对象存字符及它的数量，存入栈中，进行模拟
 // 用 两个栈 分别存 字符 及 数量 也可，但觉得好蠢，不写那种
