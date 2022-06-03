@@ -1,10 +1,67 @@
 // 这道题比预想的还要有货
 // 严谨的分析还是有点东西的
 // 见 yxc 讲解
+// 听到 yxc 说这道题 好好做 是 hard 感觉好多了
 
 #include <string>
+#include <algorithm>
+#include <numeric>
 
+using std::gcd;
+using std::min;
 using std::string;
+
+// 3. 数学解（暂未完成学习）
+
+// 3.2.0 数学解，不会证明，辗转相除法不会证明
+class Solution
+{
+public:
+    string gcdOfStrings(string str1, string str2)
+    {
+        if (str1 + str2 != str2 + str1)
+            return "";
+        return str1.substr(0, gcd(str1.size(), str2.size()));
+    }
+    int gcd(int a, int b)
+    {
+        return b ? gcd(b, a % b) : a;
+    }
+};
+// 3.2.1 一行整活，数学解但自己不会证明，辗转相除法自己也不会证明也不会写
+// 发现 LeetCode 支持 C++17 (std::gcd)了，但记得之前 C++20 语法不能使用
+class Solution
+{
+public:
+    string gcdOfStrings(string str1, string str2)
+    {
+        return str1 + str2 == str2 + str1 ? str1.substr(0, gcd(str1.size(), str2.size())) : "";
+    }
+};
+// 3.1 未用辗转相除法，就嗯遍历找最大公因子
+// 用 返回 substr 即可，别分两步构造再返回
+class Solution
+{
+public:
+    string gcdOfStrings(string str1, string str2)
+    {
+        if (str1 + str2 != str2 + str1)
+            return "";
+
+        int resSize = min(str1.size(), str2.size());
+        while (resSize > 0)
+        {
+            if (str1.size() % resSize == 0 && str2.size() % resSize == 0)
+            {
+                return str1.substr(0, resSize);
+            }
+            --resSize;
+        }
+
+        return "";
+    }
+};
+
 // 2. 自 1 的基础上（第二版 -》 第四版），击败 100% 让我停止了思考，没有自己继续想更优解法 就去看答案了
 // 实际上离最优解有很大的距离，最优解的 思想 很有东西，开脑洞，从未设想的道路
 // 而我连 GCD 都有点难以接受，先到这，慢慢消化吧
