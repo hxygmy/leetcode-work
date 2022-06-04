@@ -2,6 +2,51 @@
 
 using std::queue;
 
+// 一个队列就可以实现栈，小丑了，执迷于 两个队列实现栈了
+// 题目已经很明显了，名字就是 “用队列实现栈” 。。。。
+// 不过也是有收获的，想出了 相对繁琐的双队列掉头法 ，
+// 用一个队列实现栈就更简单更好写了
+
+// 3. 一个队列实现栈
+class MyStack
+{
+public:
+    MyStack()
+    {
+    }
+
+    void push(int x)
+    {
+        int count = que.size();
+        que.push(x);
+        while (count--)
+        {
+            que.push(que.front());
+            que.pop();
+        }
+    }
+
+    int pop()
+    {
+        int ret = que.front();
+        que.pop();
+        return ret;
+    }
+
+    int top()
+    {
+        return que.front();
+    }
+
+    bool empty()
+    {
+        return que.empty();
+    }
+
+private:
+    queue<int> que;
+};
+
 // 终于悟出 "掉头法" （对标 两个栈实现队列的 一个入队栈 + 一个出队栈），
 // 既然这样就把 忽略记录 的 两个栈实现队列也搞进来吧
 
