@@ -1,3 +1,8 @@
+// 有连锁反应的消消乐
+// 这道题很简单，但 如果进行升级（ 3 消 及以上） 就还是需要一点思路
+// 升级版本 用栈模拟 最简单直接 参考解法 2
+// 基础版本 根本就不需要栈，使用栈还需要处理结果，直接 string 很香
+
 // !!!!!!!我的诸多 编程陋习 在这道题中爆发!!!!!!!!!
 // 1.----------------
 // 滥用 size_t 却不多加思索
@@ -19,6 +24,30 @@ using std::pair;
 using std::reverse;
 using std::stack;
 using std::string;
+
+// 4. 既然 两消 又不必计数，直接使用栈 它不香吗？
+// 前面都在秀些什么
+// 特题特解
+class Solution
+{
+public:
+    string removeDuplicates(string s)
+    {
+        string res;
+        for (auto ele : s)
+        {
+            if (!res.empty() && ele == res.back())
+            {
+                res.pop_back();
+            }
+            else
+            {
+                res.push_back(ele);
+            }
+        }
+        return res;
+    }
+};
 
 // 3. 利用栈模拟（两连消何必计数？）
 // 之前只改了一半，是不用技术了，还留着计数。。。。。
