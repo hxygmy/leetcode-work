@@ -16,6 +16,9 @@ using std::stack;
 // 4. 最爽写法：stack存pair，first真实元素，second对应最小值
 // 原理上同于存对象，但用pair太香了，对象的先略了，节省时间
 // 暴露问题 ：  ?(三目运算符) 后面 不能直接 {}构造对象
+// 需要构建临时对象时，使用 emplace 替代 push
+// “变参模板” + “完美转发”
+// 不创建临时变量 或 进行隐式转换
 class MinStack
 {
 public:
@@ -27,11 +30,11 @@ public:
     {
         if (stackWithCurMin.empty() || val < stackWithCurMin.top().second)
         {
-            stackWithCurMin.push({val, val});
+            stackWithCurMin.emplace(val, val);
         }
         else
         {
-            stackWithCurMin.push({val, stackWithCurMin.top().second});
+            stackWithCurMin.emplace(val, stackWithCurMin.top().second);
         }
     }
 
