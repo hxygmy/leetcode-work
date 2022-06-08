@@ -8,7 +8,7 @@ import java.util.Deque;
  * @Author: Liangsh
  * @Date: 2022/5/25 22:46
  */
-public class LC117_Connect {
+public class LC117_Connect2 {
 
 
     public Node connect(Node root) {
