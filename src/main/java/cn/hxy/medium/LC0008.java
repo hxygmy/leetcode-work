@@ -68,7 +68,7 @@ package cn.hxy.medium;
  * @author 何晓宇
  * 2022/5/30 20:15
  */
-public class LC008 {
+public class LC0008 {
 	public static void main(String[] args) {
 		System.out.println(myAtoi("-91283472332"));
 	}

@@ -43,7 +43,7 @@ import java.util.Map;
  * @author 何晓宇
  * 2022/5/24 16:20
  */
-public class LC001 {
+public class LC0001 {
 
 	/**
 	 * 两数之和

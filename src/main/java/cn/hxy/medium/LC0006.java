@@ -44,7 +44,7 @@ package cn.hxy.medium;
  * @author 何晓宇
  * 2022/5/28 13:29
  */
-public class LC006 {
+public class LC0006 {
 
 	public static void main(String[] args) {
 		System.out.println(convert("Apalindromeisaword,phrase,number,orothersequenceofunitsthatcanbereadthesamewayineitherdirection,withgeneralallowancesforadjustmentstopunctuationandworddividers.", 3));

@@ -36,7 +36,7 @@ import java.util.*;
  * @author 何晓宇
  * 2022/6/5 23:10
  */
-public class LC015 {
+public class LC0015 {
 
 	public static void main(String[] args) {
 

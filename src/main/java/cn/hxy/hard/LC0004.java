@@ -35,7 +35,7 @@ package cn.hxy.hard;
  * @author 何晓宇
  * 2022/5/26 21:13
  */
-public class LC004 {
+public class LC0004 {
 	public static void main(String[] args) {
 		int[] a = {2,2,4,4};
 		int[] b = {2,2,4,4};

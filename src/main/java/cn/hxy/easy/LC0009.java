@@ -35,7 +35,7 @@ package cn.hxy.easy;
  * @author 何晓宇
  * 2022/5/31 14:57
  */
-public class LC009 {
+public class LC0009 {
 	public static void main(String[] args) {
 
 	}

@@ -33,7 +33,7 @@ package cn.hxy.medium;
  * @author 何晓宇
  * 2022/5/25 19:13
  */
-public class LC003 {
+public class LC0003 {
 
 	public static void main(String[] args) {
 

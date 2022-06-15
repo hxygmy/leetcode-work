@@ -39,7 +39,7 @@ import java.util.Arrays;
  * @author Applewald
  * 2022/6/6 16:31
  */
-public class LC016 {
+public class LC0016 {
 	public static void main(String[] args) {
 
 	}
