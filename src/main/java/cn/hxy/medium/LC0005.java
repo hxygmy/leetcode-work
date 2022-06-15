@@ -27,7 +27,7 @@ package cn.hxy.medium;
  * @author 何晓宇
  * 2022/5/27 19:56
  */
-public class LC005 {
+public class LC0005 {
 	public static void main(String[] args) {
 		System.out.println(longestPalindrome("cbbd"));
 	}

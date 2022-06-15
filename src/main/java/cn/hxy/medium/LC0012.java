@@ -59,7 +59,7 @@ package cn.hxy.medium;
  * @author 何晓宇
  * 2022/6/2 13:23
  */
-public class LC012 {
+public class LC0012 {
 	public static void main(String[] args) {
 		System.out.println(intToRoman(3));
 	}

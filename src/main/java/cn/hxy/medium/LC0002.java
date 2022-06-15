@@ -40,7 +40,7 @@ import org.junit.Test;
  * @author 何晓宇
  * 2022/5/24 16:35
  */
-public class LC002 {
+public class LC0002 {
 
      /**
       * 两数之和，其实就是竖式计算

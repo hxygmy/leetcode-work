@@ -40,7 +40,7 @@ import java.util.List;
  * @author Applewald
  * 2022/6/7 12:42
  */
-public class LC017 {
+public class LC0017 {
 	public static void main(String[] args) {
 
 	}

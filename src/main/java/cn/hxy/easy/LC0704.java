@@ -33,7 +33,7 @@ import org.junit.Test;
  * @author Applewald
  * 2022/6/15 10:24
  */
-public class LC704 {
+public class LC0704 {
 
 	public static void main(String[] args) {
 
