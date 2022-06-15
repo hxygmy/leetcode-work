@@ -30,13 +30,18 @@ public class LC103_BuildTree {
         // index为真实长度的前一位
         int[] rightInorder = new int[inorder.length - index - 1];
         System.arraycopy(inorder, 0, leftInorder, 0, index);
-        System.arraycopy(inorder, index, rightInorder, 0, inorder.length - index - 1);
+        // 排除index的元素
+        System.arraycopy(inorder, index + 1, rightInorder, 0, inorder.length - index - 1);
 
         // 后序数组长度和中序相同
         int[] leftPostorder = new int[index];
         int[] rightPostorder = new int[inorder.length - index - 1];
+        // 排除最后一位元素
         System.arraycopy(postorder, 0, leftPostorder, 0, index);
         System.arraycopy(postorder, index, rightPostorder, 0, inorder.length - index - 1);
+
+        root.left = buildTree(leftInorder, leftPostorder);
+        root.right = buildTree(rightInorder, rightPostorder);
 
         return root;
     }
