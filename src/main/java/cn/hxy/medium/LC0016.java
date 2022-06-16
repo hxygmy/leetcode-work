@@ -7,13 +7,13 @@ import java.util.Arrays;
 /**
  * 16. 最接近的三数之和
  *
- * 给你一个长度为 n 的整数数组 nums 和 一个目标值 target。请你从 nums 中选出三个整数，使它们的和与 target 最接近。
+ * 给你一个长度为 n 的整数数组nums和 一个目标值target。请你从 nums 中选出三个整数，使它们的和与target最接近。
  *
  * 返回这三个数的和。
  *
  * 假定每组输入只存在恰好一个解。
  *
- *  
+ * 
  *
  * 示例 1：
  *
@@ -24,7 +24,7 @@ import java.util.Arrays;
  *
  * 输入：nums = [0,0,0], target = 1
  * 输出：0
- *  
+ * 
  *
  * 提示：
  *
