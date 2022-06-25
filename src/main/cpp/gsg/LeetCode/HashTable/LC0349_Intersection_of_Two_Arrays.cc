@@ -6,7 +6,7 @@ using std::vector;
 
 // 2. set 的合理写法 题很简单，同样的方法写出来的代码差距也太大了
 // 对 C++ 这些语法过于生疏了
-// 迭代器构造 set < --->vector 可以互相构造的
+// 迭代器构造 set <--->vector 可以互相构造的
 // 返回匿名对象（使用 set 的迭代器构造 vector 匿名对象）
 class Solution
 {
