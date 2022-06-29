@@ -1,5 +1,7 @@
 package cn.hxy.medium;
 
+import cn.hxy.Test.ListNode;
+
 /**
  * 24. 两两交换链表中的节点
  *
@@ -61,14 +63,6 @@ public class LC0024 {
 		return res;
 	}
 
-
-	class ListNode {
-	    int val;
-	    ListNode next;
-	    ListNode() {}
-	    ListNode(int val) { this.val = val; }
-	    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	}
 
 	/*
 	 * 执行用时：
