@@ -1,5 +1,6 @@
 package cn.hxy.medium;
 
+import cn.hxy.Test.ListNode;
 import org.junit.Test;
 
 /**
@@ -103,26 +104,7 @@ public class LC0002 {
           return result.next;
      }
 
-     public static class ListNode {
-          int val;
-          ListNode next;
 
-          ListNode() {}
-
-          ListNode(int val) {
-               this.val = val;
-          }
-
-          ListNode(int val, ListNode next) {
-               this.val = val;
-               this.next = next;
-          }
-
-          @Override
-          public String toString() {
-               return next == null ? val + "" : val + "," + next;
-          }
-     }
 
      @Test
      public void test(){
