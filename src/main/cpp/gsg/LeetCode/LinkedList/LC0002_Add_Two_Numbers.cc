@@ -1,3 +1,7 @@
+// 还有远古代码写的很漂亮，比现在的所有版本都强多了。。。。。
+// 有时间再看看吧，因为有没有 carry 等瑕疵，可读性比较差
+// 自己都看不懂了
+
 struct ListNode
 {
     int val;
@@ -5,6 +9,75 @@ struct ListNode
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+// 4. 未原地操作，构建了新链表，使用 carry 进位 有更高的可读性，
+// 自己之前写的代码自己都看不懂了。。。。但感觉用 carry 总是好读懂的
+// 这次写的没有那么屎了，虽然还比较屎，太长了，不该这么长的，
+// 观察了一圈确实还有比较大的提升空间
+// 1. 更改出口条件，微改代码 ---> 可以复用一部分代码
+// 2. 可以处理好值再赋值，而不是频繁访问
+class Solution
+{
+public:
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+    {
+        ListNode *dummy = new ListNode(0);
+        ListNode *tail = dummy;
+
+        ListNode *p1 = l1;
+        ListNode *p2 = l2;
+        bool carry = false;
+        while (p1 && p2)
+        {
+            ListNode *newNode = new ListNode(0);
+            newNode->val = p1->val + p2->val + static_cast<int>(carry);
+            if (newNode->val >= 10)
+            {
+                carry = true;
+                newNode->val -= 10;
+            }
+            else
+            {
+                carry = false;
+            }
+            tail->next = newNode;
+            tail = newNode;
+
+            p1 = p1->next;
+            p2 = p2->next;
+        }
+
+        ListNode *remain = p1 ? p1 : p2;
+        while (remain)
+        {
+            ListNode *newNode = new ListNode(0);
+            newNode->val = remain->val + static_cast<int>(carry);
+            if (newNode->val >= 10)
+            {
+                carry = true;
+                newNode->val -= 10;
+            }
+            else
+            {
+                carry = false;
+            }
+            tail->next = newNode;
+            tail = newNode;
+
+            remain = remain->next;
+        }
+
+        if (carry)
+        {
+            ListNode *newNode = new ListNode(0);
+            newNode->val = 1;
+            tail->next = newNode;
+            // tail = newNode; // 不必
+        }
+
+        return dummy->next;
+    }
 };
 
 // 3. 原地操作，只申请一个 dummy 和 末尾进位必须申请的 tail原地操作
