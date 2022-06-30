@@ -18,6 +18,9 @@ struct TreeNode
 };
 
 // 1. 辅助队列（二维数组解法我还真就没写过，没有清晰确定的思路。。。）
+// 比上个版本写的好看多了
+// 经常访问队首就把队首取出来嘛
+// 看起来好看多了
 class Solution
 {
 public:
@@ -25,21 +28,17 @@ public:
     {
         vector<int> res;
         queue<TreeNode *> que;
-        if (root != nullptr)
-        {
+        if (root)
             que.emplace(root);
-        }
+
         while (!que.empty())
         {
-            res.emplace_back(que.front()->val);
-            if (que.front()->left)
-            {
-                que.emplace(que.front()->left);
-            }
-            if (que.front()->right)
-            {
-                que.emplace(que.front()->right);
-            }
+            TreeNode *head = que.front();
+            res.emplace_back(head->val);
+            if (head->left)
+                que.emplace(head->left);
+            if (head->right)
+                que.emplace(head->right);
             que.pop();
         }
 
