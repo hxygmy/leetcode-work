@@ -25,3 +25,6 @@ hs_err_pid*
 /target/
 /cmake-build-debug/
 /CMakeLists.txt
+*.exe
+/.vscode/
+/build/
