@@ -21,7 +21,9 @@ public:
         int begin = 0;
         int end = n - 1;
 
-        for (int k = 1; k <= n * n; k++) {
+        int k = 1;
+
+        while (k < n * n) {
             while(j < end) {
                 res[i][j] = k++;
                 j++;
