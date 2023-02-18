@@ -1,8 +1,7 @@
 /*
  * Created by hexiaoyu
  * on 2023/1/31 23:50
- * https://www.programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#_704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE
- * 简单
+ * https://leetcode.cn/problems/binary-search/ * 简单
  */
 
 #include <vector>
