@@ -64,11 +64,14 @@ public:
     void addAtIndex(int index, int val) {
         if (index <= 0) {
             addAtHead(val);
-        } else if (index == this->size) {
-            addAtTail(val);
-        } else if (index > this->size) {
             return;
         }
+        if (index == this->size) {
+            addAtTail(val);
+            return;
+        }
+        if (index > this->size) return;
+
         MyLinkedNode *p = head;
         while(index > 0){
             p = p->next;
@@ -94,11 +97,17 @@ public:
 
 int main(){
     MyLinkedList *obj = new MyLinkedList();
+    obj->addAtHead(7);
+    obj->addAtHead(2);
     obj->addAtHead(1);
-    obj->addAtTail(3);
-    obj->addAtIndex(1,2);
-    obj->get(1);
-    obj->deleteAtIndex(1);
+    obj->addAtIndex(3, 0);
+    obj->deleteAtIndex(2);
+    obj->addAtHead(6);
+    obj->addAtTail(4);
+    obj->get(4);
+    obj->addAtHead(4);
+    obj->addAtIndex(5, 0);
+    obj->addAtHead(6);
     return 0;
 }
 
