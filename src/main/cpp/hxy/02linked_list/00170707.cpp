@@ -35,7 +35,9 @@ public:
     }
 
     int get(int index) {
-        if(index < 0 and index >= this->size) return -1;
+        if(index < 0 or index >= this->size) {
+            return -1;
+        }
 
         MyLinkedNode *p = head;
         while(index > 0){
@@ -60,19 +62,26 @@ public:
     }
 
     void addAtIndex(int index, int val) {
-        if (index <= 0) addAtHead(val);
-        if (index > this->size) return;
+        if (index <= 0) {
+            addAtHead(val);
+        } else if (index == this->size) {
+            addAtTail(val);
+        } else if (index > this->size) {
+            return;
+        }
         MyLinkedNode *p = head;
-        while(index > 0 and p->next){
+        while(index > 0){
             p = p->next;
             index--;
         }
-        p->next = new MyLinkedNode(val);
+        p->next = new MyLinkedNode(val, p->next);
         this->size++;
     }
 
     void deleteAtIndex(int index) {
-        if(index < 0 or index >= this->size) return;
+        if(index < 0 or index >= this->size){
+            return;
+        }
         MyLinkedNode *p = head;
         while (index > 0){
             p = p->next;
