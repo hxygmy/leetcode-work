@@ -14,19 +14,15 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> flag;
 
-        vector<int> res;
-
         for(int i = 0; i < nums.size(); i++) {
             auto pivot = flag.find(target - nums[i]);
             if(pivot == flag.end()){
                 flag[nums[i]] = i;
             } else {
-                res.emplace_back(flag[target - nums[i]]);
-                res.emplace_back(i);
-                break;
+                return {flag[target - nums[i]], i};
             }
         }
-        return res;
+        return {};
     }
 };
 
