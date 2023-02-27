@@ -6,6 +6,7 @@
  */
 
 #include "vector"
+#include "stack"
 
 using namespace std;
 
@@ -27,6 +28,26 @@ public:
             preorderTraversal(root->left);
             preorderTraversal(root->right);
         }
+        return res;
+    }
+
+    // 前序便利非递归算法
+    vector<int> preorderTraversal2(TreeNode* root) {
+        stack<TreeNode*> s;
+        // 遍历指针
+        TreeNode *p = root;
+        while(!s.empty() or p){
+            if(p){
+                res.push_back(p->val);
+                s.emplace(p);
+                p = p->left;
+            } else {
+                p = s.top();
+                s.pop();
+                p = p->right;
+            }
+        }
+
         return res;
     }
 };
