@@ -22,7 +22,38 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        // 后序遍历，每层反转
+        if(!root) return nullptr;
 
+        // 后序遍历，每层反转
+        stack<TreeNode*> st;
+
+        TreeNode *p = root;
+
+        // r起到两重作用哇，原作用为指定是否遍历过右子树，先新加作用为担当左右子树互换的中转。
+        TreeNode *r;
+
+        while(!st.empty() or p) {
+            if(p){
+                st.push(p);
+                p = p->left;
+            } else {
+                p = st.top();
+                if(p->right and p->right != r){
+                    p = p->right;
+                    st.emplace(p);
+                    p = p->left;
+                } else {
+                    st.pop();
+
+                    r = p->left;
+                    p->left = p->right;
+                    p->right = r;
+
+                    r = p;
+                    p = nullptr;
+                }
+            }
+        }
+        return root;
     }
 };
