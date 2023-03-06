@@ -23,29 +23,34 @@ struct TreeNode {
 
 class Solution {
 public:
+
     vector<string> binaryTreePaths(TreeNode* root) {
-        stack<TreeNode*> st;
-
-        TreeNode *p = root;
         vector<string> res;
-        string s;
-
-        while(!st.empty() or p){
-            if(p){
-                s = s + to_string(p->val) + "->";
-                st.emplace(p);
-                p = p->left;
-            } else {
-                p = st.top();
-                p = p->right;
-                if(!p) {
-                    res.push_back(s.substr(0,s.size() - 3));
-                    s.substr(0, s.size() - 2);
-                }
-                st.pop();
-            }
-        }
-
+        vector<int> paths;
+        traversal(root, paths, res);
         return res;
     }
+
+    void traversal(TreeNode *root, vector<int> &path, vector<string> &paths){
+        if(root) path.push_back(root->val);
+        if(!root->left and !root->right){
+            string sPath;
+            for(int i = 0; i < path.size() - 1; i++){
+                sPath += to_string(path[i]);
+                sPath += "->";
+            }
+            sPath += to_string(path[path.size() - 1]);
+            paths.push_back(sPath);
+            return;
+        }
+        if(root->left){
+            traversal(root->left, path, paths);
+            path.pop_back();
+        }
+        if(root->right){
+            traversal(root->right, path, paths);
+            path.pop_back();
+        }
+    }
+
 };
