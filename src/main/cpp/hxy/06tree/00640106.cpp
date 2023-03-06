@@ -24,37 +24,43 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        TreeNode root = TreeNode(postorder[postorder.size() - 1]);
+        TreeNode *root = new TreeNode(postorder[postorder.size() - 1]);
         buildChild(root, inorder, postorder, 0, inorder.size() - 1, 0, postorder.size() - 2);
-        return &root;
+        return root;
     }
 
 
     // 1. 确定递归函数的参数和返回类型
-    void buildChild(TreeNode &root,
+    void buildChild(TreeNode *root,
                     vector<int> &inorder,
                     vector<int> &postorder,
                     int iBegin, int iEnd,
                     int pBegin, int pEnd){
         // 2. 确定函数出口
-        if(iBegin == iEnd) return;
+        if(iBegin >= iEnd) return;
 
         // 3. 单层递归逻辑
         int i;
         for(i = iBegin; i <= iEnd; i++){
-            if(inorder[i] == root.val){
+            if(inorder[i] == root->val){
                 break;
             }
         }
         if(i > iBegin){
-            TreeNode left = TreeNode(postorder[pBegin + i - iBegin - 1]);
-            root.left = &left;
-            buildChild(*(root.left), inorder, postorder, iBegin, i - 1, pBegin, pBegin + i - iBegin - 2);
+            root->left = new TreeNode(postorder[pBegin + i - iBegin - 1]);
+            buildChild(root->left, inorder, postorder, iBegin, i - 1, pBegin, pBegin + i - iBegin - 2);
         }
         if(i < iEnd){
-            TreeNode right = TreeNode(postorder[pEnd]);
-            root.right = &right;
-            buildChild(*(root.right), inorder, postorder, i + 1, iEnd, pBegin + i - iBegin, pEnd - 1);
+            root->right = new TreeNode(postorder[pEnd]);
+            buildChild(root->right, inorder, postorder, i + 1, iEnd, pBegin + i - iBegin, pEnd - 1);
         }
     }
 };
+
+int main(){
+    Solution *a = new Solution();
+    vector<int> inorder = {9,3,15,20,7};
+    vector<int> postorder = {9,15,7,20,3};
+    a->buildTree(inorder, postorder);
+    return 0;
+}
