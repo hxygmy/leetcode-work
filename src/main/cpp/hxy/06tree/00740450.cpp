@@ -22,18 +22,42 @@ struct TreeNode {
 };
 class Solution {
 public:
+    // 1. 确定递归函数的参数和返回值
     TreeNode* deleteNode(TreeNode* root, int key) {
-        TreeNode* p = root;
-        while(p){
-            if(p->val == key){
-                break;
-            } else if(p->val > key){
-                p = p->left;
-            } else {
+        // 2. 确定函数出口
+        if(!root) return nullptr;
+        if(root->val == key){
+            // 没有孩子
+            if(!root->left and !root->right){
+                return nullptr;
+            }
+            // 只有左
+            if(!root->right){
+                return root->left;
+            }
+            // 只有右
+            if(!root->left){
+                return root->right;
+            }
+            // 都有
+            TreeNode *par = root;
+            TreeNode *p = root->left;
+            while(p->right){
+                par = p;
                 p = p->right;
             }
+            root->val = p->val;
+            if(par == root) {
+                par->left = p->left;
+            } else {
+                par->right = p->left;
+            }
+            return root;
         }
-        if(!p) return nullptr;
-        if(p->left)
+
+        // 3. 单层递归逻辑
+        if(root->val > key) root->left = deleteNode(root->left, key);
+        if(root->val < key) root->right = deleteNode(root->right, key);
+        return root;
     }
 };
