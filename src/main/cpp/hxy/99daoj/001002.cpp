@@ -53,7 +53,7 @@ public:
         for(int col = 0; col < n; col++){
             if(ddr[row][col] == 1 and yeahYouCanPosHere(ddr, row, col, n, black)){
                 ddr[row][col] = black;
-                backtracking_queen1(ddr, row + 1, n, res);
+                backtracking_queen2(ddr, row + 1, n, res);
                 ddr[row][col] = 1;
             }
         }
@@ -90,5 +90,5 @@ int main(){
     int res = 0;
     a->backtracking_queen1(ddr, 0, n, res);
     cout << res << endl;
-    return res;
+    return 0;
 }
