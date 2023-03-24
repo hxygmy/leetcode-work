@@ -20,33 +20,75 @@
 
 using namespace std;
 
+class Solution{
+public:
+    // 确定递归函数
+    void backtracking_queen1(vector<vector<int>> &ddr, int row, int &n, int &res){
+        // 出口
+        if(row == n) {
+            backtracking_queen2(ddr, 0, n, res);
+            return;
+        }
+
+        // 单层递归逻辑
+        int white = 2;
+        for(int col = 0; col < n; col++){
+            if(ddr[row][col] == 1 and yeahYouCanPosHere(ddr, row, col, n, white)){
+                ddr[row][col] = white;
+                backtracking_queen1(ddr, row + 1, n, res);
+                ddr[row][col] = 1;
+            }
+        }
+    }
+
+    void backtracking_queen2(vector<vector<int>> &ddr, int row, int &n, int &res){
+        // 出口
+        if(row == n) {
+            res++;
+            return;
+        }
+
+        // 单层递归逻辑
+        int black = 3;
+        for(int col = 0; col < n; col++){
+            if(ddr[row][col] == 1 and yeahYouCanPosHere(ddr, row, col, n, black)){
+                ddr[row][col] = black;
+                backtracking_queen1(ddr, row + 1, n, res);
+                ddr[row][col] = 1;
+            }
+        }
+    }
+
+    bool yeahYouCanPosHere(vector<vector<int>> &ddr, int row, int col, int &n, int &color){
+        for(int i = 0; i < n; i++){
+            if(ddr[i][col] == color) return false;
+            if(ddr[row][i] == color) return false;
+        }
+
+        for(int i = row - 1, j = col - 1; i >= 0 and j >= 0; i--, j--){
+            if(ddr[i][j] == color) return false;
+        }
+
+        for(int i = row - 1, j = col + 1; i >= 0 and j < n; i--, j++){
+            if(ddr[i][j] == color) return false;
+        }
+
+        return true;
+    }
+};
+
 int main(){
     int n;
     cin >> n;
-    int t;
     vector<vector<int>> ddr(n, vector<int>(n));
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
-            cin >> t;
-            ddr[i][j] = t;
+            cin >> ddr[i][j];
         }
     }
-    int res;
-}
-
-// 确定递归函数
-void backtracking_queen1(vector<vector<int>> &ddr, int row, int &n, int &res){
-    // 出口
-    if(row == n) return;
-    bool yeahYouCanPosHere(vector<vector<int>> &ddr, int row, int col, int &n);
-    // 单层递归逻辑
-    for(int col = 0; col < n; col++){
-        if(yeahYouCanPosHere(ddr, row, col, n)){
-
-        }
-    }
-}
-
-bool yeahYouCanPosHere(vector<vector<int>> &ddr, int row, int col, int &n){
-    return false;
+    Solution *a = new Solution();
+    int res = 0;
+    a->backtracking_queen1(ddr, 0, n, res);
+    cout << res << endl;
+    return res;
 }
