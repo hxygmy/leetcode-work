@@ -13,16 +13,7 @@ using namespace std;
 
 class Solution {
 public:
-    /*
-     * 总之先写个思路吧
-     * 1. 每一行必须有一个Q
-     * 2. 每一列必须有一个Q
-     * 3. 如果path[i][j] = 'Q'
-     * 3.1 path[i]中其他元素不能为Q
-     * 3.2 每个path中的第j + 1个元素也不能是Q
-     * 3.3 path[i + k][j + k] != 'Q', k为整数 i+k和j+k都要在取值区间内
-     * 4. 回溯法，一次添加一个Q
-     */
+
     vector<string> path;
     vector<vector<string>> res;
 
