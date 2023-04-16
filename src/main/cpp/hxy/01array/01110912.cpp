@@ -5,6 +5,7 @@
  * medium
  */
 #include "vector"
+#include "algorithm"
 
 using namespace std;
 
@@ -24,16 +25,34 @@ public:
     }
 
     int partition(vector<int> &nums, int low, int high) {
-        int mid = (low + high) / 2;
-        int pivot = nums[mid];
-        nums[mid] = nums[low];
+        // 随机取中值
+        int ra = rand() % (high - low + 1) + low;
+        int pivot = nums[ra];
+        nums[ra] = nums[low];
         nums[low] = pivot;
+
+        int len;
+        int cycle;
+
         while (low < high) {
-            while (low < high && nums[high] >= pivot) {
+            len = high - low + 1;
+            cycle = 0;
+            while (low < high && nums[high] >= pivot && cycle < len / 2) {
+                high--;
+                cycle++;
+            }
+            while (low < high && nums[high] > pivot) {
                 high--;
             }
             nums[low] = nums[high];
-            while (low < high && nums[low] <= pivot) {
+
+            len = high - low + 1;
+            cycle = 0;
+            while (low < high && nums[low] <= pivot && cycle < len / 2) {
+                low++;
+                cycle++;
+            }
+            while (low < high && nums[low] < pivot) {
                 low++;
             }
             nums[high] = nums[low];
