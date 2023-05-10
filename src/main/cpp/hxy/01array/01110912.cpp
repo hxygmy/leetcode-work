@@ -72,12 +72,12 @@ public:
     int size;
     vector<int> tmp;
     void merge(vector<int> &nums, int low, int mid, int high) {
-        for(int i = low; i <= high; i++){
+        for(int i = low; i <= high; i++) {
             tmp[i] = nums[i];
         }
         int i, j, k;
-        for(i = low, j = mid + 1, k = i; i <= mid && j <= high; k++){
-            if(tmp[i] <= tmp[j]){
+        for(i = low, j = mid + 1, k = i; i <= mid && j <= high; k++) {
+            if(tmp[i] <= tmp[j]) {
                 nums[k] = tmp[i++];
             } else {
                 nums[k] = tmp[j++];
@@ -146,7 +146,7 @@ public:
 int main(){
     vector<int> x = {5,1,1,2,0,0};
     Solution *a = new Solution();
-    a->sortArrayHeapSort(x);
+    a->sortArrayMergeSort(x);
     int c = 0;
     return c;
 }
