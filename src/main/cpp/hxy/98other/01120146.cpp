@@ -8,6 +8,7 @@
 #include "algorithm"
 #include "unordered_map"
 #include "list"
+#include "iostream"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ struct MyNode {
     MyNode *pre;
     MyNode *next;
     MyNode() : key(0), value(0), pre(nullptr), next(nullptr) {}
+    ~MyNode() = default;
     MyNode(K _key, V _value) : key(_key), value(_value), pre(nullptr), next(nullptr) {}
 };
 
@@ -29,7 +31,9 @@ public:
     int capacity;
     int size;
 
-    LRUCache(int capacity) : capacity(capacity) {
+    explicit LRUCache(int capacity) : capacity(capacity), size(0) {
+        head = new MyNode<int, int>();
+        tail = new MyNode<int, int>();
         head->next = tail;
         head->pre = tail;
         tail->pre = head;
@@ -37,10 +41,10 @@ public:
     }
 
     int get(int key) {
-        if (order.f)
         if (map.find(key) != map.end()) {
-            map[key].second++;
-            return map[key].first;
+            int res = map[key]->value;
+            changeToTail(map[key]);
+            return res;
         }
         return -1;
     }
@@ -48,31 +52,63 @@ public:
     void put(int key, int value) {
         // 先找是不是已经存在
         if (map.find(key) != map.end()) {
-
+            map[key]->value = value;
+            changeToTail(map[key]);
+            return;
         }
-        if (map.size() < size) {
-            MyNode<int, int> *node = new MyNode<int, int> (key, value);
-            addAtTail(node);
-            map[key] = node;
-        } else {
+        auto *node = new MyNode<int, int> (key, value);
 
+        if (capacity == size) {
+            pop_front();
+            size--;
         }
+        addAtTail(node);
+        map[key] = node;
+        size++;
     }
 
-    void addAtTail(MyNode<int, int> *node) {
+    void pop_front() {
+        MyNode<int, int> *p = head->next;
+        head->next = p->next;
+        p->next->pre = head;
+        map.erase(map.find(p->key));
+        delete p;
+    }
+    void addAtTail(MyNode<int, int> *node) const {
         node->pre = tail->pre;
         node->next = tail;
         tail->pre->next = node;
         tail->pre = node;
     }
-    void changeToTail(MyNode<int, int> *node) {
-        MyNode<int, int> *p = node->pre;
-        p->next = node->next;
-        node->next->pre = p;
+    void changeToTail(MyNode<int, int> *node) const {
+        node->pre->next = node->next;
+        node->next->pre = node->pre;
         addAtTail(node);
     }
 
 };
+
+int main () {
+    auto *p = new LRUCache(2);
+    p->put(1, 1);
+    p->put(2, 2);
+    int i = p->get(1);
+    cout << i << "\t";
+    p->put(3, 3);
+    i = p->get(2);
+    cout << i << "\t";
+    p->put(4, 4);
+    i = p->get(1);
+    cout << i << "\t";
+
+    i = p->get(3);
+    cout << i << "\t";
+
+    i = p->get(4);
+    cout << i << "\t";
+
+    return 0;
+}
 
 /**
  * Your LRUCache object will be instantiated and called as such:
